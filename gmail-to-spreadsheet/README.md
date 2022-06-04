@@ -19,5 +19,5 @@
 OAuth with custom scopes
 
 ## Community
-* Blog post: TBD
-* YouTube: TBD
+* [Blog post](https://www.tomaszezula.com/2022/06/04/emails-on-autopilot-with-make/)
+* [Tutorial on YouTube](https://youtu.be/LYrK4Aaw3vg)
