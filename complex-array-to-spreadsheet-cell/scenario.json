@@ -1,0 +1,866 @@
+{
+    "name": "Complex Array to Google Spreadsheet Cell",
+    "flow": [
+        {
+            "id": 5,
+            "module": "util:BasicTrigger",
+            "version": 1,
+            "parameters": {
+                "values": [
+                    {
+                        "spec": [
+                            {
+                                "name": "item",
+                                "value": "1"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -1051,
+                    "y": 55
+                },
+                "restore": {
+                    "parameters": {
+                        "values": {
+                            "items": [
+                                {
+                                    "spec": {
+                                        "mode": "chose",
+                                        "items": [
+                                            null
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "values",
+                        "type": "array",
+                        "label": "Bundles",
+                        "required": true,
+                        "spec": [
+                            {
+                                "name": "spec",
+                                "label": "Items",
+                                "type": "array",
+                                "required": true,
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "label": "Name",
+                                        "required": true,
+                                        "type": "text"
+                                    },
+                                    {
+                                        "name": "value",
+                                        "label": "Value",
+                                        "required": true,
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "item",
+                        "label": "item",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 6,
+            "module": "json:CreateJSON",
+            "version": 1,
+            "parameters": {
+                "type": 22593,
+                "space": ""
+            },
+            "mapper": {
+                "goods": [
+                    {
+                        "product": "apples",
+                        "unit": "kg",
+                        "items": [
+                            {
+                                "name": "Red Delicious",
+                                "quantity": "1000"
+                            },
+                            {
+                                "name": "Fuji",
+                                "quantity": "200"
+                            },
+                            {
+                                "name": "Honeycrisp",
+                                "quantity": "500"
+                            }
+                        ]
+                    },
+                    {
+                        "product": "mangoes",
+                        "unit": "pcs",
+                        "items": [
+                            {
+                                "name": "Totapuri",
+                                "quantity": "300"
+                            },
+                            {
+                                "name": "Hapus",
+                                "quantity": "100"
+                            },
+                            {
+                                "name": "Sindhura",
+                                "quantity": "200"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": -781,
+                    "y": -261
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "nested": [
+                                {
+                                    "name": "goods",
+                                    "label": null,
+                                    "type": "array",
+                                    "spec": {
+                                        "type": "collection",
+                                        "spec": [
+                                            {
+                                                "name": "product",
+                                                "label": null,
+                                                "type": "text",
+                                                "default": null,
+                                                "required": true,
+                                                "multiline": false
+                                            },
+                                            {
+                                                "name": "unit",
+                                                "label": null,
+                                                "type": "text",
+                                                "default": null,
+                                                "required": false,
+                                                "multiline": false
+                                            },
+                                            {
+                                                "name": "items",
+                                                "label": null,
+                                                "type": "array",
+                                                "spec": {
+                                                    "type": "collection",
+                                                    "spec": [
+                                                        {
+                                                            "name": "name",
+                                                            "label": null,
+                                                            "type": "text",
+                                                            "default": null,
+                                                            "required": true,
+                                                            "multiline": false
+                                                        },
+                                                        {
+                                                            "name": "quantity",
+                                                            "label": null,
+                                                            "type": "number",
+                                                            "default": null,
+                                                            "required": false
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ],
+                                        "name": "value"
+                                    }
+                                }
+                            ],
+                            "label": "Store Inventory"
+                        },
+                        "space": {
+                            "label": "Empty"
+                        }
+                    },
+                    "expect": {
+                        "goods": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "items": {
+                                        "mode": "chose",
+                                        "collapsed": true,
+                                        "items": [
+                                            null,
+                                            null,
+                                            null
+                                        ]
+                                    }
+                                },
+                                {
+                                    "items": {
+                                        "mode": "chose",
+                                        "items": [
+                                            null,
+                                            null,
+                                            null
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure",
+                        "required": true
+                    },
+                    {
+                        "name": "space",
+                        "type": "select",
+                        "label": "Indentation",
+                        "validate": {
+                            "enum": [
+                                "tab",
+                                "2",
+                                "4"
+                            ]
+                        }
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "goods",
+                        "type": "array",
+                        "label": null,
+                        "spec": {
+                            "type": "collection",
+                            "spec": [
+                                {
+                                    "name": "product",
+                                    "label": null,
+                                    "type": "text",
+                                    "required": true
+                                },
+                                {
+                                    "name": "unit",
+                                    "label": null,
+                                    "type": "text"
+                                },
+                                {
+                                    "name": "items",
+                                    "label": null,
+                                    "type": "array",
+                                    "spec": {
+                                        "type": "collection",
+                                        "spec": [
+                                            {
+                                                "name": "name",
+                                                "label": null,
+                                                "type": "text",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "quantity",
+                                                "label": null,
+                                                "type": "number"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "name": "value"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": 20,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {
+                "type": 22593
+            },
+            "mapper": {
+                "json": "{{6.json}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": -605,
+                    "y": 69
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "Store Inventory"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "goods",
+                        "label": null,
+                        "type": "array",
+                        "spec": {
+                            "type": "collection",
+                            "spec": [
+                                {
+                                    "name": "product",
+                                    "label": null,
+                                    "type": "text",
+                                    "default": null,
+                                    "required": true,
+                                    "multiline": false
+                                },
+                                {
+                                    "name": "unit",
+                                    "label": null,
+                                    "type": "text",
+                                    "default": null,
+                                    "required": false,
+                                    "multiline": false
+                                },
+                                {
+                                    "name": "items",
+                                    "label": null,
+                                    "type": "array",
+                                    "spec": {
+                                        "type": "collection",
+                                        "spec": [
+                                            {
+                                                "name": "name",
+                                                "label": null,
+                                                "type": "text",
+                                                "default": null,
+                                                "required": true,
+                                                "multiline": false
+                                            },
+                                            {
+                                                "name": "quantity",
+                                                "label": null,
+                                                "type": "number",
+                                                "default": null,
+                                                "required": false
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": 30,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{20.goods}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": -463,
+                    "y": -242
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit",
+                            "items": [
+                                null
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "array",
+                        "type": "array",
+                        "label": "Array",
+                        "mode": "edit",
+                        "spec": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": 29,
+            "module": "google-sheets:addRow",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 331456
+            },
+            "mapper": {
+                "mode": "select",
+                "valueInputOption": "USER_ENTERED",
+                "insertDataOption": "OVERWRITE",
+                "from": "drive",
+                "spreadsheetId": "/1cZC_fPhw-vUcfUoXAskADC4cyCBDwRB-/1zekr2pFhqqTzR1LXlg8onbYPhutufHf1/1eAyPkCL0XM1QGZl-M2Ij5kR_hxZRQbfBEj6E3bZlr04",
+                "sheetId": "Store Inventory",
+                "includesHeaders": true,
+                "values": {
+                    "0": "{{30.product}}",
+                    "1": "{{30.unit}}",
+                    "2": "=SUBSTITUTE(\"{{map(30.items; \"name\")}}\",\",\",CHAR(10))",
+                    "3": "=SUBSTITUTE(\"{{map(30.items; \"quantity\")}}\",\",\",CHAR(10))",
+                    "4": "{{sum(map(30.items; \"quantity\"))}}"
+                }
+            },
+            "metadata": {
+                "designer": {
+                    "x": -163,
+                    "y": -239
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My Google connection (zezutomtest@gmail.com)",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "mode": {
+                            "label": "Select from the list"
+                        },
+                        "valueInputOption": {
+                            "mode": "chose",
+                            "label": "User entered"
+                        },
+                        "insertDataOption": {
+                            "mode": "chose",
+                            "label": "Overwrite"
+                        },
+                        "from": {
+                            "label": "My Drive"
+                        },
+                        "spreadsheetId": {
+                            "path": [
+                                "Make",
+                                "Templates",
+                                "Complex Array to Google Spreadsheet Cell"
+                            ]
+                        },
+                        "sheetId": {
+                            "label": "Store Inventory"
+                        },
+                        "includesHeaders": {
+                            "nested": [
+                                {
+                                    "name": "values",
+                                    "label": "Values",
+                                    "type": "collection",
+                                    "spec": [
+                                        {
+                                            "name": "0",
+                                            "label": "Product (A)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "1",
+                                            "label": "Unit (B)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "2",
+                                            "label": "Items (C)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "3",
+                                            "label": "Quantity (D)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "4",
+                                            "label": "Total Quantity (E)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "5",
+                                            "label": "(F)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "6",
+                                            "label": "(G)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "7",
+                                            "label": "(H)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "8",
+                                            "label": "(I)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "9",
+                                            "label": "(J)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "10",
+                                            "label": "(K)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "11",
+                                            "label": "(L)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "12",
+                                            "label": "(M)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "13",
+                                            "label": "(N)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "14",
+                                            "label": "(O)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "15",
+                                            "label": "(P)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "16",
+                                            "label": "(Q)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "17",
+                                            "label": "(R)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "18",
+                                            "label": "(S)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "19",
+                                            "label": "(T)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "20",
+                                            "label": "(U)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "21",
+                                            "label": "(V)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "22",
+                                            "label": "(W)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "23",
+                                            "label": "(X)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "24",
+                                            "label": "(Y)",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "name": "25",
+                                            "label": "(Z)",
+                                            "type": "text"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "label": "Yes"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "mode",
+                        "type": "select",
+                        "label": "Choose a Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "select",
+                                "map"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "valueInputOption",
+                        "type": "select",
+                        "label": "Value input option",
+                        "validate": {
+                            "enum": [
+                                "USER_ENTERED",
+                                "RAW"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "insertDataOption",
+                        "type": "select",
+                        "label": "Insert data option",
+                        "validate": {
+                            "enum": [
+                                "INSERT_ROWS",
+                                "OVERWRITE"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Choose a Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "file",
+                        "label": "Spreadsheet ID",
+                        "required": true
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "select",
+                        "label": "Table contains headers",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                true,
+                                false
+                            ]
+                        }
+                    },
+                    {
+                        "name": "values",
+                        "type": "collection",
+                        "label": "Values",
+                        "spec": [
+                            {
+                                "name": "0",
+                                "type": "text",
+                                "label": "Product (A)"
+                            },
+                            {
+                                "name": "1",
+                                "type": "text",
+                                "label": "Unit (B)"
+                            },
+                            {
+                                "name": "2",
+                                "type": "text",
+                                "label": "Items (C)"
+                            },
+                            {
+                                "name": "3",
+                                "type": "text",
+                                "label": "Quantity (D)"
+                            },
+                            {
+                                "name": "4",
+                                "type": "text",
+                                "label": "Total Quantity (E)"
+                            },
+                            {
+                                "name": "5",
+                                "type": "text",
+                                "label": "(F)"
+                            },
+                            {
+                                "name": "6",
+                                "type": "text",
+                                "label": "(G)"
+                            },
+                            {
+                                "name": "7",
+                                "type": "text",
+                                "label": "(H)"
+                            },
+                            {
+                                "name": "8",
+                                "type": "text",
+                                "label": "(I)"
+                            },
+                            {
+                                "name": "9",
+                                "type": "text",
+                                "label": "(J)"
+                            },
+                            {
+                                "name": "10",
+                                "type": "text",
+                                "label": "(K)"
+                            },
+                            {
+                                "name": "11",
+                                "type": "text",
+                                "label": "(L)"
+                            },
+                            {
+                                "name": "12",
+                                "type": "text",
+                                "label": "(M)"
+                            },
+                            {
+                                "name": "13",
+                                "type": "text",
+                                "label": "(N)"
+                            },
+                            {
+                                "name": "14",
+                                "type": "text",
+                                "label": "(O)"
+                            },
+                            {
+                                "name": "15",
+                                "type": "text",
+                                "label": "(P)"
+                            },
+                            {
+                                "name": "16",
+                                "type": "text",
+                                "label": "(Q)"
+                            },
+                            {
+                                "name": "17",
+                                "type": "text",
+                                "label": "(R)"
+                            },
+                            {
+                                "name": "18",
+                                "type": "text",
+                                "label": "(S)"
+                            },
+                            {
+                                "name": "19",
+                                "type": "text",
+                                "label": "(T)"
+                            },
+                            {
+                                "name": "20",
+                                "type": "text",
+                                "label": "(U)"
+                            },
+                            {
+                                "name": "21",
+                                "type": "text",
+                                "label": "(V)"
+                            },
+                            {
+                                "name": "22",
+                                "type": "text",
+                                "label": "(W)"
+                            },
+                            {
+                                "name": "23",
+                                "type": "text",
+                                "label": "(X)"
+                            },
+                            {
+                                "name": "24",
+                                "type": "text",
+                                "label": "(Y)"
+                            },
+                            {
+                                "name": "25",
+                                "type": "text",
+                                "label": "(Z)"
+                            }
+                        ]
+                    }
+                ],
+                "advanced": true
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com"
+    }
+}
