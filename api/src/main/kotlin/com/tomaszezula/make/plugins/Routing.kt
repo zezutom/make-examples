@@ -16,10 +16,10 @@ fun Application.configureRouting(
     // Starting point for a Ktor app:
     routing {
         post("/scenarios") {
-            createScenarioHandler.respond(CreateScenarioRequest::class).invoke(call)
+            createScenarioHandler.respondTo(CreateScenarioRequest::class).invoke(call)
         }
     }
 }
 
-suspend inline fun <C : Command, T : Request<C>> Handler<C>.respond(clazz: KClass<T>): suspend (ApplicationCall) -> Unit =
+suspend inline fun <C : Command, T : Request<C>> Handler<C>.respondTo(clazz: KClass<T>): suspend (ApplicationCall) -> Unit =
     RouteResponder.respond(this, clazz, LoggerFactory.getLogger(this::class.java))

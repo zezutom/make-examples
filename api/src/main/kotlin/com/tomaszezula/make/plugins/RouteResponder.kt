@@ -17,14 +17,14 @@ object RouteResponder {
         clazz: KClass<T>,
         logger: Logger
     ): suspend (ApplicationCall) -> Unit = { call ->
-        try {
+        runSuspendCatching {
             val request = call.receive(clazz)
             when (val response = handler.handle(request.toCommand())) {
                 is Created -> call.respond(HttpStatusCode.Created, response.value)
                 is BadRequest -> call.respond(HttpStatusCode.BadRequest, response.message)
                 is Error -> call.respond(response.statusCode, response.message)
             }
-        } catch (e: Exception) {
+        }.onFailure { e ->
             logger.warn("Request failed", e)
             call.respond(HttpStatusCode.InternalServerError, "Request failed")
         }
