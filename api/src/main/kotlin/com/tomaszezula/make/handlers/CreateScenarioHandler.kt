@@ -16,12 +16,10 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.*
-import org.slf4j.Logger
 
 class CreateScenarioHandler(
     private val client: HttpClient,
-    private val config: MakeConfig,
-    private val logger: Logger
+    private val config: MakeConfig
 ) : Handler<CreateScenarioCommand> {
     companion object {
         object Keys {
@@ -39,7 +37,6 @@ class CreateScenarioHandler(
     private val requestUrl = "${config.baseUrl}/scenarios?confirmed=true"
 
     override suspend fun handle(request: CreateScenarioCommand): Response {
-        logger.debug("Received request: $request")
         val response = client.post(requestUrl) {
             headers {
                 append(HttpHeaders.Authorization, "Token ${config.token.value}")
