@@ -19,10 +19,13 @@ java -cp build/libs/api-0.0.1-all.jar com.tomaszezula.make.ApplicationKt -DMAKE_
 
 Beware, your authentication token is sensitive information. Never store in this repository!
 
-## Use the API
+## Endpoints
 ### Create Scenario
 
 `POST /scenarios`
+
+> #### Client Code
+> [Java](client/docs/scenarios/create-scenario.md#java) | [JavaScript](client/docs/scenarios/create-scenario.md#javascript) | [Command Line](client/docs/scenarios/create-scenario.md#command-line)
 
 #### Request Parameters
 | Parameter          | Type    | Description                                                                              |
