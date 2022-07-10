@@ -1,0 +1,1106 @@
+{
+  "name": "util",
+  "version": "1.11.4",
+  "author": "Patrik Šimek",
+  "label": "Tools",
+  "theme": "#ac94ea",
+  "description": "Make''s Tools provide maximum flexibility to create automated workflows, RPAs, scenarios and templates.",
+  "keywords": "util, utility, help, codepage, encoding, utf, windows, ascii, charset, unicode",
+  "triggers": [
+    {
+      "name": "BasicTrigger",
+      "label": "Basic trigger",
+      "description": "Generates bundles with their own structure.",
+      "parameters": [
+        {
+          "name": "values",
+          "label": "Bundles",
+          "type": "array",
+          "spec": [
+            {
+              "name": "spec",
+              "label": "Items",
+              "type": "array",
+              "required": true,
+              "spec": [
+                {
+                  "name": "name",
+                  "label": "Name",
+                  "required": true,
+                  "type": "text"
+                },
+                {
+                  "name": "value",
+                  "label": "Value",
+                  "required": true,
+                  "type": "text"
+                }
+              ]
+            }
+          ],
+          "required": true
+        }
+      ],
+      "samples": "rpc://RpcBasicTriggerSample",
+      "interface": "rpc://RpcBasicTriggerInterface",
+      "output": {
+        "icon": "items"
+      }
+    }
+  ],
+  "transformers": [
+    {
+      "name": "ComposeTransformer",
+      "label": "Compose a string",
+      "description": "Composes a string for easier mapping of scenarios.",
+      "expect": [
+        {
+          "name": "value",
+          "label": "Text",
+          "type": "text",
+          "multiline": true
+        }
+      ],
+      "interface": [
+        {
+          "name": "value",
+          "label": "Text",
+          "type": "text",
+          "multiline": true
+        }
+      ],
+      "output": {
+        "icon": "field"
+      }
+    },
+    {
+      "name": "TransformEncoding",
+      "label": "Convert the encoding of a text",
+      "description": "Converts a text from one codepage to another.",
+      "interface": [
+        {
+          "label": "Data",
+          "type": "buffer",
+          "name": "data"
+        }
+      ],
+      "expect": [
+        {
+          "type": "buffer",
+          "help": "Text or binary data.",
+          "name": "data",
+          "label": "Input data"
+        },
+        {
+          "name": "cpin",
+          "help": "For input data in binary form, we recommend that you choose a codepage. If the input data is in the form of a text or you are not sure about the codepage, leave this field empty.",
+          "required": false,
+          "grouped": true,
+          "options": [
+            {
+              "label": "Unicode",
+              "options": [
+                {
+                  "label": "UTF 8",
+                  "value": "utf8"
+                },
+                {
+                  "value": "ucs2",
+                  "label": "UTF 16 (UCS 2)"
+                },
+                {
+                  "label": "UTF 16 (BE)",
+                  "value": "utf16be"
+                }
+              ]
+            },
+            {
+              "label": "Single-byte",
+              "options": [
+                {
+                  "label": "Windows 1250",
+                  "value": "cp1250"
+                },
+                {
+                  "value": "cp1251",
+                  "label": "Windows 1251"
+                },
+                {
+                  "value": "cp1252",
+                  "label": "Windows 1252"
+                },
+                {
+                  "value": "cp1253",
+                  "label": "Windows 1253"
+                },
+                {
+                  "value": "cp1254",
+                  "label": "Windows 1254"
+                },
+                {
+                  "value": "cp1255",
+                  "label": "Windows 1255"
+                },
+                {
+                  "value": "cp1256",
+                  "label": "Windows 1256"
+                },
+                {
+                  "label": "Windows 1257",
+                  "value": "cp1257"
+                },
+                {
+                  "value": "cp1258",
+                  "label": "Windows 1258"
+                },
+                {
+                  "label": "ISO-8859-1",
+                  "value": "cp28591"
+                },
+                {
+                  "label": "ISO-8859-2",
+                  "value": "cp28592"
+                },
+                {
+                  "label": "ISO-8859-3",
+                  "value": "cp28593"
+                },
+                {
+                  "label": "ISO-8859-4",
+                  "value": "cp28594"
+                },
+                {
+                  "label": "ISO-8859-5",
+                  "value": "cp28595"
+                },
+                {
+                  "value": "cp28596",
+                  "label": "ISO-8859-6"
+                },
+                {
+                  "label": "ISO-8859-7",
+                  "value": "cp28597"
+                },
+                {
+                  "label": "ISO-8859-8",
+                  "value": "cp28598"
+                },
+                {
+                  "value": "cp28599",
+                  "label": "ISO-8859-9"
+                },
+                {
+                  "value": "cp28600",
+                  "label": "ISO-8859-10"
+                },
+                {
+                  "value": "cp28601",
+                  "label": "ISO-8859-11"
+                },
+                {
+                  "value": "cp28602",
+                  "label": "ISO-8859-12"
+                },
+                {
+                  "label": "ISO-8859-13",
+                  "value": "cp28603"
+                },
+                {
+                  "value": "cp28604",
+                  "label": "ISO-8859-14"
+                },
+                {
+                  "label": "ISO-8859-15",
+                  "value": "cp28605"
+                },
+                {
+                  "label": "ISO-8859-16",
+                  "value": "cp28606"
+                }
+              ]
+            },
+            {
+              "label": "Multi-byte",
+              "options": [
+                {
+                  "label": "Big5",
+                  "value": "big5"
+                },
+                {
+                  "label": "Big5-HKSCS",
+                  "value": "big5-hkscs"
+                },
+                {
+                  "label": "EUC-CN",
+                  "value": "euc-cn"
+                },
+                {
+                  "label": "EUC-JP",
+                  "value": "euc-jp"
+                },
+                {
+                  "label": "EUC-KR",
+                  "value": "euc-kr"
+                },
+                {
+                  "label": "GB18030",
+                  "value": "gb18030"
+                },
+                {
+                  "label": "GB2312",
+                  "value": "gb2312"
+                },
+                {
+                  "label": "GBK",
+                  "value": "gbk"
+                },
+                {
+                  "label": "KS_C_5601",
+                  "value": "ks_c_5601"
+                },
+                {
+                  "label": "Shift JIS",
+                  "value": "shift_jis"
+                },
+                {
+                  "label": "Windows-31j",
+                  "value": "windows-31j"
+                },
+                {
+                  "label": "Windows932",
+                  "value": "windows932"
+                },
+                {
+                  "label": "Windows936",
+                  "value": "windows936"
+                },
+                {
+                  "label": "Windows949",
+                  "value": "windows949"
+                },
+                {
+                  "label": "Windows950",
+                  "value": "windows950"
+                }
+              ]
+            },
+            {
+              "label": "Other",
+              "options": [
+                {
+                  "label": "ASCII",
+                  "value": "ascii"
+                }
+              ]
+            }
+          ],
+          "type": "select",
+          "label": "Input data codepage",
+          "editable": true
+        },
+        {
+          "options": [
+            {
+              "label": "Unicode",
+              "options": [
+                {
+                  "label": "UTF 8",
+                  "value": "utf8"
+                },
+                {
+                  "value": "ucs2",
+                  "label": "UTF 16 (UCS 2)"
+                },
+                {
+                  "label": "UTF 16 (BE)",
+                  "value": "utf16be"
+                }
+              ]
+            },
+            {
+              "label": "Single-byte",
+              "options": [
+                {
+                  "label": "Windows 1250",
+                  "value": "cp1250"
+                },
+                {
+                  "value": "cp1251",
+                  "label": "Windows 1251"
+                },
+                {
+                  "value": "cp1252",
+                  "label": "Windows 1252"
+                },
+                {
+                  "value": "cp1253",
+                  "label": "Windows 1253"
+                },
+                {
+                  "value": "cp1254",
+                  "label": "Windows 1254"
+                },
+                {
+                  "value": "cp1255",
+                  "label": "Windows 1255"
+                },
+                {
+                  "value": "cp1256",
+                  "label": "Windows 1256"
+                },
+                {
+                  "label": "Windows 1257",
+                  "value": "cp1257"
+                },
+                {
+                  "value": "cp1258",
+                  "label": "Windows 1258"
+                },
+                {
+                  "label": "ISO-8859-1",
+                  "value": "cp28591"
+                },
+                {
+                  "label": "ISO-8859-2",
+                  "value": "cp28592"
+                },
+                {
+                  "label": "ISO-8859-3",
+                  "value": "cp28593"
+                },
+                {
+                  "label": "ISO-8859-4",
+                  "value": "cp28594"
+                },
+                {
+                  "label": "ISO-8859-5",
+                  "value": "cp28595"
+                },
+                {
+                  "value": "cp28596",
+                  "label": "ISO-8859-6"
+                },
+                {
+                  "label": "ISO-8859-7",
+                  "value": "cp28597"
+                },
+                {
+                  "label": "ISO-8859-8",
+                  "value": "cp28598"
+                },
+                {
+                  "value": "cp28599",
+                  "label": "ISO-8859-9"
+                },
+                {
+                  "value": "cp28600",
+                  "label": "ISO-8859-10"
+                },
+                {
+                  "value": "cp28601",
+                  "label": "ISO-8859-11"
+                },
+                {
+                  "value": "cp28602",
+                  "label": "ISO-8859-12"
+                },
+                {
+                  "label": "ISO-8859-13",
+                  "value": "cp28603"
+                },
+                {
+                  "value": "cp28604",
+                  "label": "ISO-8859-14"
+                },
+                {
+                  "label": "ISO-8859-15",
+                  "value": "cp28605"
+                },
+                {
+                  "label": "ISO-8859-16",
+                  "value": "cp28606"
+                }
+              ]
+            },
+            {
+              "label": "Multi-byte",
+              "options": [
+                {
+                  "label": "Big5",
+                  "value": "big5"
+                },
+                {
+                  "label": "Big5-HKSCS",
+                  "value": "big5-hkscs"
+                },
+                {
+                  "label": "EUC-CN",
+                  "value": "euc-cn"
+                },
+                {
+                  "label": "EUC-JP",
+                  "value": "euc-jp"
+                },
+                {
+                  "label": "EUC-KR",
+                  "value": "euc-kr"
+                },
+                {
+                  "label": "GB18030",
+                  "value": "gb18030"
+                },
+                {
+                  "label": "GB2312",
+                  "value": "gb2312"
+                },
+                {
+                  "label": "GBK",
+                  "value": "gbk"
+                },
+                {
+                  "label": "KS_C_5601",
+                  "value": "ks_c_5601"
+                },
+                {
+                  "label": "Shift JIS",
+                  "value": "shift_jis"
+                },
+                {
+                  "label": "Windows-31j",
+                  "value": "windows-31j"
+                },
+                {
+                  "label": "Windows932",
+                  "value": "windows932"
+                },
+                {
+                  "label": "Windows936",
+                  "value": "windows936"
+                },
+                {
+                  "label": "Windows949",
+                  "value": "windows949"
+                },
+                {
+                  "label": "Windows950",
+                  "value": "windows950"
+                }
+              ]
+            },
+            {
+              "label": "Other",
+              "options": [
+                {
+                  "label": "ASCII",
+                  "value": "ascii"
+                }
+              ]
+            }
+          ],
+          "type": "select",
+          "required": true,
+          "grouped": true,
+          "name": "cpout",
+          "label": "Output data codepage",
+          "editable": true
+        }
+      ],
+      "output": {
+        "icon": "items"
+      }
+    },
+    {
+      "name": "TextSwitcher",
+      "label": "Switch",
+      "description": "Switches the output based on the input.",
+      "expect": [
+        {
+          "name": "input",
+          "label": "Input",
+          "type": "text"
+        },
+        {
+          "name": "useRegExpMatch",
+          "label": "Use regular expressions to match",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "casesTable",
+          "label": "Cases",
+          "type": "array",
+          "spec": [
+            {
+              "help": "Enter the text/regular expression pattern.",
+              "name": "pattern",
+              "label": "Pattern",
+              "type": "text",
+              "editable": true
+            },
+            {
+              "name": "output",
+              "label": "Output",
+              "type": "text",
+              "multiline": true,
+              "editable": true
+            }
+          ],
+          "required": true,
+          "editable": true
+        },
+        {
+          "name": "elseOutput",
+          "label": "Else",
+          "type": "text",
+          "multiline": true,
+          "editable": true
+        }
+      ],
+      "interface": [
+        {
+          "name": "output",
+          "label": "Output",
+          "required": true,
+          "type": "text",
+          "multiline": true
+        },
+        {
+          "name": "isElse",
+          "label": "Is else?",
+          "type": "boolean"
+        }
+      ],
+      "output": {
+        "icon": "field"
+      },
+      "deprecated": true
+    },
+    {
+      "name": "Switcher",
+      "label": "Switch",
+      "description": "Switches the output based on the input.",
+      "expect": [
+        {
+          "name": "input",
+          "label": "Input",
+          "type": "text"
+        },
+        {
+          "name": "useRegExpMatch",
+          "label": "Use regular expressions to match",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "casesTable",
+          "label": "Cases",
+          "type": "array",
+          "spec": [
+            {
+              "help": "Enter the text/regular expression pattern.",
+              "name": "pattern",
+              "label": "Pattern",
+              "type": "text",
+              "editable": true
+            },
+            {
+              "name": "output",
+              "label": "Output",
+              "type": "any",
+              "editable": true
+            }
+          ],
+          "required": true,
+          "editable": true
+        },
+        {
+          "name": "elseOutput",
+          "label": "Else",
+          "type": "any",
+          "editable": true
+        }
+      ],
+      "interface": [
+        {
+          "name": "output",
+          "label": "Output",
+          "required": true,
+          "type": "any"
+        },
+        {
+          "name": "isElse",
+          "label": "Is else?",
+          "type": "boolean"
+        }
+      ],
+      "output": {
+        "icon": "field"
+      }
+    }
+  ],
+  "aggregators": [
+    {
+      "name": "AggregateAggregator",
+      "label": "Table aggregator",
+      "description": "Aggregates selected values into a table.",
+      "parameters": [
+        {
+          "name": "columnSeparator",
+          "label": "Column separator",
+          "type": "select",
+          "required": false,
+          "advanced": true,
+          "options": [
+            {
+              "label": "New row",
+              "value": "\n"
+            },
+            {
+              "label": "Tab",
+              "value": "\t"
+            },
+            {
+              "label": "Other",
+              "value": "other",
+              "nested": [
+                {
+                  "label": "Separator",
+                  "name": "otherColumnSeparator",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "rowSeparator",
+          "label": "Row separator",
+          "type": "select",
+          "required": false,
+          "advanced": true,
+          "options": [
+            {
+              "label": "New row",
+              "value": "\n"
+            },
+            {
+              "label": "Tab",
+              "value": "\t"
+            },
+            {
+              "label": "Other",
+              "value": "other",
+              "nested": [
+                {
+                  "label": "Separator",
+                  "name": "otherRowSeparator",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "interface": [
+        {
+          "name": "text",
+          "type": "text",
+          "help": "Text"
+        }
+      ],
+      "output": {
+        "icon": "text"
+      }
+    },
+    {
+      "name": "TextAggregator",
+      "label": "Text aggregator",
+      "description": "Aggregates multiple strings into one text.",
+      "parameters": [
+        {
+          "name": "rowSeparator",
+          "label": "Row separator",
+          "type": "select",
+          "required": false,
+          "advanced": true,
+          "options": [
+            {
+              "label": "New row",
+              "value": "\n"
+            },
+            {
+              "label": "Tab",
+              "value": "\t"
+            },
+            {
+              "label": "Other",
+              "value": "other",
+              "nested": [
+                {
+                  "label": "Separator",
+                  "name": "otherRowSeparator",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "expect": [
+        {
+          "name": "value",
+          "type": "text",
+          "multiline": true,
+          "label": "Text"
+        }
+      ],
+      "interface": [
+        {
+          "name": "text",
+          "type": "text",
+          "help": "Text"
+        }
+      ],
+      "output": {
+        "icon": "text"
+      }
+    },
+    {
+      "name": "FunctionAggregator",
+      "label": "Numeric aggregator",
+      "description": "Applies the aggregate function to selected rows.",
+      "parameters": [
+        {
+          "name": "fn",
+          "label": "Aggregate function",
+          "type": "select",
+          "required": true,
+          "options": [
+            {
+              "label": "Average (AVG)",
+              "value": "avg"
+            },
+            {
+              "label": "SUM",
+              "value": "sum"
+            },
+            {
+              "label": "COUNT",
+              "value": "count"
+            },
+            {
+              "label": "Maximum value (MAX)",
+              "value": "max"
+            },
+            {
+              "label": "Minimum value (MIN)",
+              "value": "min"
+            }
+          ]
+        }
+      ],
+      "interface": [
+        {
+          "name": "result",
+          "type": "number",
+          "help": "Result"
+        }
+      ],
+      "output": {
+        "icon": "items"
+      },
+      "deprecated": true
+    },
+    {
+      "name": "FunctionAggregator2",
+      "label": "Numeric aggregator",
+      "description": "Applies the aggregate function to selected rows.",
+      "parameters": [
+        {
+          "name": "fn",
+          "label": "Aggregate function",
+          "type": "select",
+          "required": true,
+          "options": [
+            {
+              "label": "Average (AVG)",
+              "value": "avg"
+            },
+            {
+              "label": "SUM",
+              "value": "sum"
+            },
+            {
+              "label": "COUNT",
+              "value": "count"
+            },
+            {
+              "label": "Maximum value (MAX)",
+              "value": "max"
+            },
+            {
+              "label": "Minimum value (MIN)",
+              "value": "min"
+            }
+          ]
+        }
+      ],
+      "expect": [
+        {
+          "name": "value",
+          "type": "number",
+          "label": "Value"
+        }
+      ],
+      "interface": [
+        {
+          "name": "result",
+          "type": "number",
+          "help": "Result"
+        }
+      ],
+      "output": {
+        "icon": "items"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "name": "FunctionIncrement",
+      "label": "Increment function",
+      "description": "Returns a value of 1 after first run. Every subsequent run will increment the returned value by 1.",
+      "parameters": [
+        {
+          "name": "reset",
+          "label": "Reset a value",
+          "type": "select",
+          "required": true,
+          "options": [
+            {
+              "label": "After one cycle",
+              "value": "run"
+            },
+            {
+              "label": "After one scenario run",
+              "value": "execution"
+            },
+            {
+              "label": "Never",
+              "value": "scenario",
+              "default": true
+            }
+          ]
+        }
+      ],
+      "interface": [
+        {
+          "name": "i",
+          "label": "i",
+          "type": "number"
+        }
+      ],
+      "output": {
+        "icon": "info"
+      }
+    },
+    {
+      "name": "FunctionSleep",
+      "label": "Sleep",
+      "description": "Delays execution for a specified period of time.",
+      "expect": [
+        {
+          "name": "duration",
+          "label": "Delay",
+          "help": "The number of seconds for which the scenario execution will be suspended.",
+          "type": "uinteger",
+          "required": true,
+          "default": 1,
+          "validate": {
+            "min": 1,
+            "max": 300
+          }
+        }
+      ],
+      "interface": []
+    },
+    {
+      "name": "GetVariable",
+      "deprecated": true,
+      "label": "Get variable",
+      "description": "Get the value of a previously stored variable.",
+      "expect": [
+        {
+          "name": "name",
+          "label": "Variable name",
+          "type": "text",
+          "required": true
+        }
+      ],
+      "interface": [
+        {
+          "name": "value",
+          "label": "Value",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "SetVariable",
+      "deprecated": true,
+      "label": "Set variable",
+      "description": "Sets the value of the variable.",
+      "expect": [
+        {
+          "name": "name",
+          "label": "Variable name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "scope",
+          "label": "Variable lifetime",
+          "type": "select",
+          "required": true,
+          "default": "roundtrip",
+          "options": [
+            {
+              "label": "One cycle",
+              "value": "roundtrip"
+            },
+            {
+              "label": "One execution",
+              "value": "execution"
+            }
+          ]
+        },
+        {
+          "name": "value",
+          "label": "Variable value",
+          "type": "any"
+        }
+      ],
+      "interface": "rpc://RpcSetVariableInterface"
+    },
+    {
+      "name": "GetVariable2",
+      "label": "Get variable",
+      "description": "Get the value of a previously stored variable.",
+      "expect": [
+        {
+          "name": "name",
+          "label": "Variable name",
+          "type": "text",
+          "required": true
+        }
+      ],
+      "interface": "rpc://RpcGetVariable2Interface"
+    },
+    {
+      "name": "SetVariable2",
+      "label": "Set variable",
+      "description": "Sets the value of the variable.",
+      "expect": [
+        {
+          "name": "name",
+          "label": "Variable name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "scope",
+          "label": "Variable lifetime",
+          "type": "select",
+          "required": true,
+          "default": "roundtrip",
+          "options": [
+            {
+              "label": "One cycle",
+              "value": "roundtrip"
+            },
+            {
+              "label": "One execution",
+              "value": "execution"
+            }
+          ]
+        },
+        {
+          "name": "value",
+          "label": "Variable value",
+          "type": "any"
+        }
+      ],
+      "interface": "rpc://RpcSetVariable2Interface"
+    },
+    {
+      "name": "GetVariables",
+      "label": "Get multiple variables",
+      "description": "Get values of a previously stored variables.",
+      "expect": [
+        {
+          "name": "variables",
+          "label": "Variables",
+          "type": "array",
+          "spec": {
+            "name": "name",
+            "label": "Variable name",
+            "type": "text",
+            "required": true
+          }
+        }
+      ],
+      "interface": "rpc://RpcGetVariablesInterface"
+    },
+    {
+      "name": "SetVariables",
+      "label": "Set multiple variables",
+      "description": "Sets the value of multiple variables.",
+      "expect": [
+        {
+          "name": "variables",
+          "label": "Variables",
+          "type": "array",
+          "spec": [
+            {
+              "name": "name",
+              "label": "Variable name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "value",
+              "label": "Variable value",
+              "type": "any"
+            }
+          ]
+        },
+        {
+          "name": "scope",
+          "label": "Variable lifetime",
+          "type": "select",
+          "required": true,
+          "default": "roundtrip",
+          "options": [
+            {
+              "label": "One cycle",
+              "value": "roundtrip"
+            },
+            {
+              "label": "One execution",
+              "value": "execution"
+            }
+          ]
+        }
+      ],
+      "interface": "rpc://RpcSetVariablesInterface"
+    }
+  ],
+  "componentType": "app",
+  "dependencies": {
+    "accounts": [],
+    "hooks": [],
+    "keys": []
+  },
+  "icon": "/img/packages/util.png",
+  "premium": false,
+  "latest": true
+}
