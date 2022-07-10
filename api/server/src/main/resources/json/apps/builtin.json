@@ -1,0 +1,180 @@
+{
+  "name": "builtin",
+  "version": "1.4.5",
+  "author": "Patrik Simek",
+  "label": "Flow Control",
+  "description": "Repeat, iterate and aggregate arrays into one or more modules. Create simple and complex scenarios to automate your workflows with Make.",
+  "theme": "#a1d36e",
+  "parameters": [],
+  "actions": [
+    {
+      "name": "BasicRepeater",
+      "label": "Repeater",
+      "parameters": [],
+      "expect": [
+        {
+          "name": "start",
+          "type": "number",
+          "required": true,
+          "default": 1,
+          "label": "Initial value"
+        },
+        {
+          "name": "repeats",
+          "type": "number",
+          "required": true,
+          "default": 3,
+          "label": "Repeats",
+          "validate": {
+            "min": 0,
+            "max": 10000
+          }
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "required": true,
+          "default": 1,
+          "label": "Step",
+          "advanced": true
+        }
+      ],
+      "interface": [
+        {
+          "name": "i",
+          "type": "number"
+        }
+      ],
+      "output": {
+        "feeder": true,
+        "results": "repeats"
+      }
+    }
+  ],
+  "aggregators": [
+    {
+      "name": "BasicAggregator",
+      "label": "Array aggregator",
+      "parameters": [],
+      "interface": [
+        {
+          "name": "array",
+          "label": "Array",
+          "type": "array",
+          "spec": []
+        }
+      ],
+      "defaults": {
+        "expect": {
+          "editable": true
+        }
+      }
+    }
+  ],
+  "feeders": [
+    {
+      "name": "BasicFeeder",
+      "label": "Iterator",
+      "parameters": [],
+      "expect": [
+        {
+          "name": "array",
+          "type": "array",
+          "spec": [],
+          "label": "Array",
+          "editable": true,
+          "mode": "edit"
+        }
+      ]
+    }
+  ],
+  "convergers": [
+    {
+      "name": "BasicConverger",
+      "label": "Converger",
+      "public": false
+    }
+  ],
+  "routers": [
+    {
+      "name": "BasicRouter",
+      "label": "Router",
+      "parameters": [],
+      "interface": [],
+      "expect": "*"
+    }
+  ],
+  "directives": [
+    {
+      "name": "Rollback",
+      "label": "Rollback",
+      "selector": "* ! * self"
+    },
+    {
+      "name": "Break",
+      "label": "Break",
+      "selector": "* ! * self",
+      "expect": [
+        {
+          "name": "retry",
+          "type": "boolean",
+          "label": "Automatically complete execution",
+          "required": true,
+          "editable": true,
+          "default": true,
+          "nested": [
+            {
+              "name": "count",
+              "type": "uinteger",
+              "label": "Number of attempts",
+              "required": true,
+              "default": 3,
+              "help": "The maximum number of attempts allowed for the execution to be tried and completed automatically. If they fail, the execution will have to be completed manually.",
+              "validate": {
+                "min": 1,
+                "max": 10000
+              }
+            },
+            {
+              "name": "interval",
+              "type": "uinteger",
+              "label": "Interval between attempts",
+              "required": true,
+              "default": 15,
+              "help": "In minutes",
+              "validate": {
+                "min": 1,
+                "max": 44640
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Resume",
+      "label": "Resume",
+      "selector": "* ! * self"
+    },
+    {
+      "name": "Commit",
+      "label": "Commit",
+      "selector": "* ! * self"
+    },
+    {
+      "name": "Ignore",
+      "label": "Ignore",
+      "selector": "* ! * self"
+    }
+  ],
+  "keywords": "feeder,for,until,while,repeat,iterate",
+  "componentType": "app",
+  "dependencies": {
+    "accounts": [],
+    "hooks": [],
+    "keys": []
+  },
+  "icon": "/img/packages/builtin.png",
+  "premium": false,
+  "latest": true
+}
