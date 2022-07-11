@@ -7,6 +7,13 @@ plugins {
     kotlin("jvm")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("com.github.johnrengelman.shadow")
+    id("org.jsonschema2dataclass")
+}
+
+jsonSchema2Pojo {
+    targetPackage.set("com.tomaszezula.make.api")
+    propertyWordDelimiters.set("_")
+    includeGeneratedAnnotation.set(false)
 }
 
 application {
@@ -28,4 +35,11 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+
+    implementation("javax.validation:validation-api:2.0.1.Final")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
+
+    // see src/main/resources/json/external_dependencies.json
+    implementation("joda-time:joda-time:2.10.14")
 }

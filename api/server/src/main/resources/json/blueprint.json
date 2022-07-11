@@ -1,0 +1,389 @@
+{
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "blueprint": {
+          "type": "object",
+          "properties": {
+            "flow": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "mapper": {
+                    "type": "object",
+                    "properties": {
+                      "ca": {
+                        "type": "string"
+                      },
+                      "qs": {
+                        "type": "array"
+                      },
+                      "url": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "gzip": {
+                        "type": "boolean"
+                      },
+                      "method": {
+                        "type": "string"
+                      },
+                      "headers": {
+                        "type": "array"
+                      },
+                      "timeout": {
+                        "type": "string"
+                      },
+                      "authPass": {
+                        "type": "string"
+                      },
+                      "authUser": {
+                        "type": "string"
+                      },
+                      "bodyType": {
+                        "type": "string"
+                      },
+                      "shareCookies": {
+                        "type": "boolean"
+                      },
+                      "parseResponse": {
+                        "type": "boolean"
+                      },
+                      "followRedirect": {
+                        "type": "boolean"
+                      },
+                      "useQuerystring": {
+                        "type": "boolean"
+                      },
+                      "rejectUnauthorized": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "module": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "onerror": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "mapper": {
+                          "type": "object",
+                          "properties": {
+                            "count": {
+                              "type": "string",
+                              "format": "utc-millisec"
+                            },
+                            "retry": {
+                              "type": "boolean"
+                            },
+                            "interval": {
+                              "type": "string",
+                              "format": "utc-millisec"
+                            }
+                          }
+                        },
+                        "module": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "version": {
+                          "type": "integer"
+                        },
+                        "metadata": {
+                          "type": "object",
+                          "properties": {
+                            "expect": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  },
+                                  "required": {
+                                    "type": "boolean"
+                                  }
+                                }
+                              }
+                            },
+                            "restore": {
+                              "type": "object",
+                              "properties": {
+                                "retry": {
+                                  "type": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "designer": {
+                              "type": "object",
+                              "properties": {
+                                "x": {
+                                  "type": "integer"
+                                },
+                                "y": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "parameters": {
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "version": {
+                    "type": "integer"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "properties": {
+                      "expect": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        }
+                      },
+                      "restore": {
+                        "type": "object",
+                        "properties": {
+                          "qs": {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string"
+                              },
+                              "items": {
+                                "type": "array"
+                              }
+                            }
+                          },
+                          "method": {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "headers": {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string"
+                              },
+                              "items": {
+                                "type": "array"
+                              }
+                            }
+                          },
+                          "bodyType": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "designer": {
+                        "type": "object",
+                        "properties": {
+                          "x": {
+                            "type": "integer"
+                          },
+                          "y": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "parameters": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "required": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "handleErrors": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "name": {
+              "type": "string"
+            },
+            "metadata": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "integer"
+                },
+                "scenario": {
+                  "type": "object",
+                  "properties": {
+                    "maxErrors": {
+                      "type": "integer"
+                    },
+                    "autoCommit": {
+                      "type": "boolean"
+                    },
+                    "roundtrips": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "scheduling": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "immediately",
+                "indefinitely",
+                "once",
+                "daily",
+                "weekly",
+                "monthly",
+                "yearly"
+              ]
+            },
+            "interval": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "date": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "between": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "time": {
+              "type": "string",
+              "pattern": "^[0-2]?[0-9]:[0-5]?[0-9](:[0-5]?[0-9])?(\\\\.[0-9]+)?$"
+            },
+            "days": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 31
+              }
+            },
+            "months": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 12
+              }
+            },
+            "restrict": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "time": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": true,
+                      "pattern": "^[0-2]?[0-9]:[0-5]?[0-9](:[0-5]?[0-9])?(\\\\.[0-9]+)?$"
+                    }
+                  },
+                  "days": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 31
+                    }
+                  },
+                  "months": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 12
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "idSequence": {
+          "type": "integer"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_edit": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

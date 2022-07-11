@@ -7,3 +7,4 @@
 ## Make API
 Integrate calls to Make API to [your own API server](api/README.md) and take the use of Make to the next level!
 * [Create Scenario](api/README.md#create-scenario)
+* [Get Scenario Blueprint](api/README.md#get-scenario-blueprint)

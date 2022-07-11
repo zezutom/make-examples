@@ -66,11 +66,11 @@ fs.readFile(__dirname + '/blueprint.json', (err, blueprint) => {
     }).then(response => {
             console.log(`Status code: ${response.status}`);
             console.log(response.data);
-            res.json(response.data)
+            res.json(response.data);
         }
     ).catch(err => {
-        console.error(err)
-        res.render("")
+        console.error(err);
+        res.render("");
     });
 });
 ```

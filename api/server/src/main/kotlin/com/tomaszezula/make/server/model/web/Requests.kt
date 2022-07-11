@@ -2,10 +2,12 @@ package com.tomaszezula.make.server.model.web
 
 import com.tomaszezula.make.server.model.domain.Command
 import com.tomaszezula.make.server.model.domain.CreateScenarioCommand
+import com.tomaszezula.make.server.model.domain.GetScenarioBlueprintCommand
 import com.tomaszezula.make.server.model.domain.organisations.TeamId
 import com.tomaszezula.make.server.model.domain.scenarios.Blueprint
 import com.tomaszezula.make.server.model.domain.scenarios.FolderId
 import com.tomaszezula.make.server.model.domain.scenarios.IndefiniteScheduling
+import com.tomaszezula.make.server.model.domain.scenarios.ScenarioId
 import java.util.Base64
 
 sealed interface Request<T : Command> {
@@ -34,4 +36,13 @@ data class CreateScenarioRequest(
             TeamId(this.teamId)
         )
 
+}
+
+@kotlinx.serialization.Serializable
+data class GetScenarioBlueprintRequest(
+    val scenarioId: Long,
+    val draft: Boolean?
+) : Request<GetScenarioBlueprintCommand> {
+    override fun toCommand(): GetScenarioBlueprintCommand =
+        GetScenarioBlueprintCommand(ScenarioId(this.scenarioId), this.draft ?: false)
 }
