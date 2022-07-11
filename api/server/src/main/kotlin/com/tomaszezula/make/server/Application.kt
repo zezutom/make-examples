@@ -1,7 +1,11 @@
 package com.tomaszezula.make.server
 
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.tomaszezula.make.server.config.MakeConfig
 import com.tomaszezula.make.server.handlers.CreateScenarioHandler
+import com.tomaszezula.make.server.handlers.GetScenarioBlueprintHandler
 import com.tomaszezula.make.server.model.web.AuthToken
 import com.tomaszezula.make.server.plugins.configureRouting
 import com.typesafe.config.ConfigFactory
@@ -20,6 +24,9 @@ import io.ktor.server.plugins.contentnegotiation.*
 import java.net.URI
 
 fun main() {
+    val objectMapper = ObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        .registerModule(KotlinModule.Builder().build())
     val config = HoconApplicationConfig(ConfigFactory.load())
     val client = HttpClient(CIO) {
         install(Logging) {
@@ -46,7 +53,8 @@ fun main() {
             json()
         }
         configureRouting(
-            CreateScenarioHandler(client, makeConfig)
+            CreateScenarioHandler(client, makeConfig),
+            GetScenarioBlueprintHandler(client, objectMapper, makeConfig)
         )
     }.start(wait = true)
 }
@@ -60,3 +68,4 @@ private fun Throwable.isTimeoutException(): Boolean = when (this) {
     is SocketTimeoutException -> true
     else -> false
 }
+

@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.7.0" apply false
     id("org.jetbrains.kotlin.plugin.serialization") version "1.7.0" apply false
     id("com.github.johnrengelman.shadow") version "7.1.2" apply false
+    id("org.jsonschema2dataclass") version "4.2.0" apply false
 }
 
 group = "com.tomaszezula.make"

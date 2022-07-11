@@ -44,7 +44,7 @@ class CreateScenarioHandler(
             contentType(ContentType.Application.Json)
             setBody(
                 buildJsonObject {
-                    put(BlueprintKey, request.blueprint.json.lineSequence().map { it.trim() }.joinToString(""))
+                    put(BlueprintKey, request.blueprint.value.lineSequence().map { it.trim() }.joinToString(""))
                     put(SchedulingKey, request.scheduling.toJson())
                     put(FolderIdKey, request.folderId.value)
                     put(TeamIdKey, request.teamId.value)
@@ -52,13 +52,13 @@ class CreateScenarioHandler(
             )
         }
         return when (response.status) {
-            HttpStatusCode.OK -> Created(response.toApi())
+            HttpStatusCode.OK -> Created(response.toWeb())
             HttpStatusCode.BadRequest -> BadRequest(response.body())
             else -> Error(response.status, response.body())
         }
     }
 
-    private suspend fun HttpResponse.toApi(): CreateScenarioResponse =
+    private suspend fun HttpResponse.toWeb(): CreateScenarioResponse =
         CreateScenarioResponse(
             Json.decodeFromString<JsonObject>(this.body())[Scenario]!!.jsonObject[Id]!!.jsonPrimitive.long
         )
