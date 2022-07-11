@@ -17,7 +17,7 @@ object RouteResponder {
         clazz: KClass<T>,
         logger: Logger
     ): suspend (ApplicationCall) -> Unit = { call ->
-        respond(handler, call.receive(clazz), logger)
+        respond(handler, call.receive(clazz), logger).invoke(call)
     }
 
     suspend fun <C : Command, T : Request<C>> respond(

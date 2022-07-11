@@ -3,7 +3,7 @@ package com.tomaszezula.make.server.model.web
 sealed interface WebResponse
 
 @kotlinx.serialization.Serializable
-data class CreateScenarioResponse(val scenarioId: Long) : WebResponse
+data class CreateScenarioResponse(val scenarioId: Int) : WebResponse
 
 @kotlinx.serialization.Serializable
 data class GetScenarioBlueprintResponse(val name: String, val flows: List<Flow>, val json: String) : WebResponse {

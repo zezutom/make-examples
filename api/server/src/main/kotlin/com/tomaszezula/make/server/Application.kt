@@ -53,7 +53,7 @@ fun main() {
             json()
         }
         configureRouting(
-            CreateScenarioHandler(client, makeConfig),
+            CreateScenarioHandler(client, objectMapper, makeConfig),
             GetScenarioBlueprintHandler(client, objectMapper, makeConfig)
         )
     }.start(wait = true)
