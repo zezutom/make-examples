@@ -1,0 +1,816 @@
+{
+    "name": "WhatsApp + Google Photos",
+    "flow": [
+        {
+            "id": 2,
+            "module": "whatsapp-business-cloud:watchEvents",
+            "version": 1,
+            "parameters": {
+                "__IMTHOOK__": 303696
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -563,
+                    "y": -596
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTHOOK__": {
+                            "data": {
+                                "editable": "false"
+                            },
+                            "label": "My WhatsApp Business Cloud Events webhook"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTHOOK__",
+                        "type": "hook:whatsapp-business-cloud2",
+                        "label": "Webhook",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "WhatsApp Business Account ID"
+                    },
+                    {
+                        "name": "time",
+                        "type": "date",
+                        "label": "Time"
+                    },
+                    {
+                        "name": "field",
+                        "type": "text",
+                        "label": "Field"
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "from",
+                                    "type": "text",
+                                    "label": "Sender"
+                                },
+                                {
+                                    "name": "id",
+                                    "type": "text",
+                                    "label": "Message ID"
+                                },
+                                {
+                                    "name": "timestamp",
+                                    "type": "date",
+                                    "label": "Timestamp"
+                                },
+                                {
+                                    "name": "text",
+                                    "spec": [
+                                        {
+                                            "name": "body",
+                                            "type": "text",
+                                            "label": "Body"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Text"
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "text",
+                                    "label": "Type"
+                                },
+                                {
+                                    "name": "image",
+                                    "spec": [
+                                        {
+                                            "name": "caption",
+                                            "type": "text",
+                                            "label": "Caption"
+                                        },
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Image"
+                                },
+                                {
+                                    "name": "audio",
+                                    "spec": [
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        },
+                                        {
+                                            "name": "voice",
+                                            "type": "boolean",
+                                            "label": "Voice"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Audio"
+                                },
+                                {
+                                    "name": "video",
+                                    "spec": [
+                                        {
+                                            "name": "caption",
+                                            "type": "text",
+                                            "label": "Caption"
+                                        },
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Video"
+                                },
+                                {
+                                    "name": "document",
+                                    "spec": [
+                                        {
+                                            "name": "caption",
+                                            "type": "text",
+                                            "label": "Caption"
+                                        },
+                                        {
+                                            "name": "filename",
+                                            "type": "text",
+                                            "label": "File Name"
+                                        },
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Document"
+                                },
+                                {
+                                    "name": "contacts",
+                                    "spec": {
+                                        "spec": [
+                                            {
+                                                "name": "name",
+                                                "spec": [
+                                                    {
+                                                        "name": "formatted_name",
+                                                        "type": "text",
+                                                        "label": "Formatted Name"
+                                                    },
+                                                    {
+                                                        "name": "first_name",
+                                                        "type": "text",
+                                                        "label": "First Name"
+                                                    },
+                                                    {
+                                                        "name": "last_name",
+                                                        "type": "text",
+                                                        "label": "Last Name"
+                                                    },
+                                                    {
+                                                        "name": "middle_name",
+                                                        "type": "text",
+                                                        "label": "Middle Name"
+                                                    },
+                                                    {
+                                                        "name": "suffix",
+                                                        "type": "text",
+                                                        "label": "Name Suffix"
+                                                    },
+                                                    {
+                                                        "name": "prefix",
+                                                        "type": "text",
+                                                        "label": "Name Prefix"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Name"
+                                            },
+                                            {
+                                                "name": "phones",
+                                                "spec": [
+                                                    {
+                                                        "name": "phone",
+                                                        "type": "text",
+                                                        "label": "Phone"
+                                                    },
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "Type"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Phones"
+                                            },
+                                            {
+                                                "name": "emails",
+                                                "spec": [
+                                                    {
+                                                        "name": "email",
+                                                        "type": "email",
+                                                        "label": "Email"
+                                                    },
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "Type"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Emails"
+                                            },
+                                            {
+                                                "name": "org",
+                                                "spec": [
+                                                    {
+                                                        "name": "company",
+                                                        "type": "text",
+                                                        "label": "Company"
+                                                    },
+                                                    {
+                                                        "name": "department",
+                                                        "type": "text",
+                                                        "label": "Department"
+                                                    },
+                                                    {
+                                                        "name": "title",
+                                                        "type": "text",
+                                                        "label": "Title"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Organization"
+                                            },
+                                            {
+                                                "name": "urls",
+                                                "spec": [
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "Type"
+                                                    },
+                                                    {
+                                                        "name": "url",
+                                                        "type": "url",
+                                                        "label": "URL"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "URLs"
+                                            },
+                                            {
+                                                "name": "addresses",
+                                                "spec": [
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "Type"
+                                                    },
+                                                    {
+                                                        "name": "street",
+                                                        "type": "text",
+                                                        "label": "Street"
+                                                    },
+                                                    {
+                                                        "name": "city",
+                                                        "type": "text",
+                                                        "label": "City"
+                                                    },
+                                                    {
+                                                        "name": "zip",
+                                                        "type": "text",
+                                                        "label": "ZIP"
+                                                    },
+                                                    {
+                                                        "name": "country",
+                                                        "type": "text",
+                                                        "label": "Country"
+                                                    },
+                                                    {
+                                                        "name": "country_code",
+                                                        "type": "text",
+                                                        "label": "Country Code"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Addresses"
+                                            },
+                                            {
+                                                "name": "birthday",
+                                                "type": "text",
+                                                "label": "Birthday"
+                                            }
+                                        ],
+                                        "type": "collection"
+                                    },
+                                    "type": "array",
+                                    "label": "Contacts"
+                                },
+                                {
+                                    "name": "sticker",
+                                    "spec": [
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Sticker"
+                                },
+                                {
+                                    "name": "location",
+                                    "spec": [
+                                        {
+                                            "name": "latitude",
+                                            "type": "number",
+                                            "label": "Latitude"
+                                        },
+                                        {
+                                            "name": "longitude",
+                                            "type": "number",
+                                            "label": "Longitude"
+                                        },
+                                        {
+                                            "name": "name",
+                                            "type": "text",
+                                            "label": "Name"
+                                        },
+                                        {
+                                            "name": "address",
+                                            "type": "text",
+                                            "label": "Address"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Location"
+                                },
+                                {
+                                    "name": "context",
+                                    "spec": [
+                                        {
+                                            "name": "from",
+                                            "type": "text",
+                                            "label": "From"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Context ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Context"
+                                },
+                                {
+                                    "name": "button",
+                                    "spec": [
+                                        {
+                                            "name": "payload",
+                                            "type": "text",
+                                            "label": "Payload"
+                                        },
+                                        {
+                                            "name": "text",
+                                            "type": "text",
+                                            "label": "Text"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Button"
+                                },
+                                {
+                                    "name": "interactive",
+                                    "spec": [
+                                        {
+                                            "name": "type",
+                                            "type": "text",
+                                            "label": "Type"
+                                        },
+                                        {
+                                            "name": "list_reply",
+                                            "spec": [
+                                                {
+                                                    "name": "id",
+                                                    "type": "number",
+                                                    "label": "ID"
+                                                },
+                                                {
+                                                    "name": "title",
+                                                    "type": "text",
+                                                    "label": "Title"
+                                                },
+                                                {
+                                                    "name": "description",
+                                                    "type": "text",
+                                                    "label": "Description"
+                                                }
+                                            ],
+                                            "type": "collection",
+                                            "label": "List Reply"
+                                        },
+                                        {
+                                            "name": "button_reply",
+                                            "spec": [
+                                                {
+                                                    "name": "id",
+                                                    "type": "number",
+                                                    "label": "ID"
+                                                },
+                                                {
+                                                    "name": "title",
+                                                    "type": "text",
+                                                    "label": "Title"
+                                                }
+                                            ],
+                                            "type": "collection",
+                                            "label": "Button Reply"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Interactive"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Messages"
+                    },
+                    {
+                        "name": "messaging_product",
+                        "type": "text",
+                        "label": "Messaging Product"
+                    },
+                    {
+                        "name": "metadata",
+                        "spec": [
+                            {
+                                "name": "display_phone_number",
+                                "type": "text",
+                                "label": "Display Phone Number"
+                            },
+                            {
+                                "name": "phone_number_id",
+                                "type": "text",
+                                "label": "Phone Number ID"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Metadata"
+                    },
+                    {
+                        "name": "contacts",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "profile",
+                                    "spec": [
+                                        {
+                                            "name": "name",
+                                            "type": "text",
+                                            "label": "Name"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Profile"
+                                },
+                                {
+                                    "name": "wa_id",
+                                    "type": "text",
+                                    "label": "WhatsApp ID"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Contacts"
+                    },
+                    {
+                        "name": "statuses",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "id",
+                                    "type": "text",
+                                    "label": "Message ID"
+                                },
+                                {
+                                    "name": "status",
+                                    "type": "text",
+                                    "label": "Status"
+                                },
+                                {
+                                    "name": "timestamp",
+                                    "type": "date",
+                                    "label": "Timestamp"
+                                },
+                                {
+                                    "name": "recipient_id",
+                                    "type": "text",
+                                    "label": "Recipient ID"
+                                },
+                                {
+                                    "name": "conversation",
+                                    "spec": [
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Conversation ID"
+                                        },
+                                        {
+                                            "name": "expiration_timestamp",
+                                            "type": "date",
+                                            "label": "Expiration Timestamp"
+                                        },
+                                        {
+                                            "name": "origin",
+                                            "spec": [
+                                                {
+                                                    "name": "type",
+                                                    "type": "text",
+                                                    "label": "Type"
+                                                }
+                                            ],
+                                            "type": "collection",
+                                            "label": "Origin"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Conversation"
+                                },
+                                {
+                                    "name": "pricing",
+                                    "spec": [
+                                        {
+                                            "name": "billable",
+                                            "type": "boolean",
+                                            "label": "Billable"
+                                        },
+                                        {
+                                            "name": "pricing_model",
+                                            "type": "text",
+                                            "label": "Pricing Model"
+                                        },
+                                        {
+                                            "name": "category",
+                                            "type": "text",
+                                            "label": "Category"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Pricing"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Statuses"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 9,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{2.messages}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": -205,
+                    "y": -594
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 14,
+            "module": "whatsapp-business-cloud:getMedia",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 603108
+            },
+            "filter": {
+                "name": "Only images and videos",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{9.type}}",
+                            "b": "image",
+                            "o": "text:equal"
+                        }
+                    ],
+                    [
+                        {
+                            "a": "{{9.type}}",
+                            "b": "video",
+                            "o": "text:equal"
+                        }
+                    ]
+                ]
+            },
+            "mapper": {
+                "mediaId": "{{9.image.id}}{{9.video.id}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 221,
+                    "y": -593
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "whatsapp-business-cloud2"
+                            },
+                            "label": "My WhatsApp Business Cloud connection (WhatsApp Bot)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:whatsapp-business-cloud2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "mediaId",
+                        "type": "text",
+                        "label": "Media ID",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 10,
+            "module": "google-photos:UploadMedia",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 331456
+            },
+            "mapper": {
+                "data": "{{14.mediaData}}",
+                "albumId": "AI82jLj36oA4x6qSFyqgA3xdrG7nasNTL3ZVJNDEERg5N9C9dDB5qGYS20-iVXfb9zCUG8Y3X-dL",
+                "fileName": "{{14.mediaName}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 586,
+                    "y": -594
+                },
+                "restore": {
+                    "expect": {
+                        "albumId": {
+                            "mode": "chose",
+                            "label": "Test Album"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "My Google connection (zezutomtest@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "fileName",
+                        "type": "filename",
+                        "label": "Filename",
+                        "required": true
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Data",
+                        "required": true
+                    },
+                    {
+                        "name": "description",
+                        "type": "text",
+                        "label": "Description"
+                    },
+                    {
+                        "name": "albumId",
+                        "type": "select",
+                        "label": "Album"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": true
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com"
+    }
+}
